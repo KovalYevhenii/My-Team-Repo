@@ -7,7 +7,7 @@ internal class Program
 {
     private static async Task Main(string[] args)
     {
-        string token = "6726026571:AAHfA0d6Fvci7eaWlcKUiaMJ2u_aCUnjsS8";
+        string token = "token";
         // Configure dependency injection
         var services = new ServiceCollection();
         var serviceConfig = new ServicesConfiguration(token);
