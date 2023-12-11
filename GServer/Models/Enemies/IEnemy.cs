@@ -1,6 +1,5 @@
-﻿namespace GServer.Models.Enemies
+﻿namespace GServer.Models.Enemies;
+public interface IEnemy
 {
-    public interface IEnemy
-    {
-    }
+
 }
