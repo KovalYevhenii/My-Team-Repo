@@ -8,8 +8,7 @@ namespace GServer.Models.Warriors
         {
             Type = WarriorType.Guard;
         }
-
-        public void Attack(Enemy enemy)
+        public void Attack(IList<IEnemy> enemies)
         {
             throw new NotImplementedException();
         }

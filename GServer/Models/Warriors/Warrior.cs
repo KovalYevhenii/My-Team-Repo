@@ -11,6 +11,5 @@
     public abstract class Warrior
     {
         public WarriorType Type { get; set; }
-
     }
 }
