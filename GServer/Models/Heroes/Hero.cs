@@ -1,4 +1,5 @@
 ﻿using GServer.Models.Artifacts;
+using GServer.Models.Artifacts.Artifact;
 using GServer.Models.Warriors;
 
 namespace GServer.Models.Heroes
@@ -11,7 +12,8 @@ namespace GServer.Models.Heroes
         public Enum Ability { get; set; }
         public int Scores { get; set; }
         public readonly int ScoresToLavelUp = 5;
-        public List<IArtifact> Inventory { get; set; }
+        //public List<IArtifact> Inventory { get; set; }
+        public List<Artifact> Inventory { get; set; }
         public List<IWarrior> Crew { get; set; }
     }
 }

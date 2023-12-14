@@ -1,4 +1,4 @@
-﻿using GServer.Models.Artifacts;
+﻿using GServer.Models.Artifacts.Artifact;
 using GServer.Models.Warriors;
 using System.Reflection.Emit;
 using System.Xml.Linq;
@@ -14,7 +14,8 @@ namespace GServer.Models.Heroes
             Skill = eName.ВОЛШЕБНИЦА;
             Ability = eName.ВОЛШЕБНИЦА;
             Scores = 0;
-            Inventory = new List<IArtifact>();
+            //Inventory = new List<IArtifact>();
+            Inventory = new List<Artifact>();
             Crew = new List<IWarrior>();
         }
 

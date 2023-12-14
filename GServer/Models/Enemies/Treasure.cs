@@ -1,4 +1,5 @@
 ﻿using GServer.Models.Artifacts;
+using GServer.Models.Artifacts.Artifact;
 
 namespace GServer.Models.Enemies;
 public class Treasure : Enemy
@@ -7,9 +8,17 @@ public class Treasure : Enemy
     {
         Type = EnemyType.Treasure;
     }
-    public IArtifact Artifact { get; set; }
-    public IArtifact Open()
+    public Artifact Artifact { get; set; }
+    public Artifact Open()
     {
         return Artifact;
     }
+
+
+
+    //public IArtifact Artifact { get; set; }
+    //public IArtifact Open()
+    //{
+    //    return Artifact;
+    //}
 }
