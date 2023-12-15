@@ -14,9 +14,9 @@ namespace GServer.Models.Сemetery
             warriors.Add(warrior);
         }
 
-        public Warrior GetWarrior(string name)
+        public Warrior GetWarrior(string type)
         {
-            Warrior warrior = warriors.FirstOrDefault(w => w.Name == name);
+            Warrior warrior = warriors.FirstOrDefault(w => w.Type == type);
             if (warrior != null)
             {
                 warriors.Remove(warrior);

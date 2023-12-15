@@ -2,6 +2,6 @@
 namespace GServer.Models.Warriors;
 public interface IWarrior
 {
-    public void Attack(IList<IEnemy> enemys);
-    public void OpenTreasure();
+    void Attack(IList<IEnemy> enemys);
+    void OpenTreasure();
 }

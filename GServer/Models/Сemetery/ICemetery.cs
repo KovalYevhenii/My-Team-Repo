@@ -8,7 +8,7 @@ namespace GServer.Models.Сemetery
     public interface ICemetery
     {
         void AddWarrior(Warrior warrior);
-        Warrior GetWarrior(string name);
+        Warrior GetWarrior(string type);
 
     }
 }
