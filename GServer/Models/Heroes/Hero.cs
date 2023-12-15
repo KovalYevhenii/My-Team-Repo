@@ -6,6 +6,7 @@ namespace GServer.Models.Heroes
     public abstract class Hero
     {
         public int Lavel { get; set; }
+        public int LAbility { get; set; }
         public Enum Name { get; set; }
         public Enum Skill { get; set; }
         public Enum Ability { get; set; }
