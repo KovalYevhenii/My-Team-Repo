@@ -9,7 +9,7 @@ namespace GServer.Models.Warriors
             Type = WarriorType.Cleric;
         }
 
-        public void Attack(Enemy enemy)
+        public void Attack(IList<IEnemy> enemies)
         {
 
         }

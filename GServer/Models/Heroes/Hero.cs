@@ -10,6 +10,7 @@ namespace GServer.Models.Heroes
         public Enum Skill { get; set; }
         public Enum Ability { get; set; }
         public int Scores { get; set; }
+
         public readonly int ScoresToLavelUp = 5;
         public List<IArtifact> Inventory { get; set; }
         public List<IWarrior> Crew { get; set; }

@@ -6,7 +6,7 @@ public class Thief : Warrior, IWarrior
     {
         Type = WarriorType.Thief;
     }
-    public void Attack(Enemy enemy)
+    public void Attack(IList<IEnemy> enemies)
     {
         throw new NotImplementedException();
     }
