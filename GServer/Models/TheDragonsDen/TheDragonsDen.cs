@@ -22,5 +22,10 @@ namespace GServer.Models.TheDragonsDen
         {
             Console.WriteLine("Дракон проснулся!");
         }
+
+        void IDragonsDen.StartBattle()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
