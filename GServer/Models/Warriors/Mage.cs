@@ -8,7 +8,8 @@ namespace GServer.Models.Warriors
         {
             Type = WarriorType.Mage;
         }
-        public void Attack(IList<IEnemy> enemies)
+      
+        public void Attack(IList<IEnemy> enemys)
         {
             throw new NotImplementedException();
         }

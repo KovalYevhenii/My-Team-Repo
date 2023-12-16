@@ -1,4 +1,5 @@
 ﻿using GServer.Models.Enemies;
+
 namespace GServer.Models.Warriors;
 public class Thief : Warrior, IWarrior
 {
@@ -6,10 +7,12 @@ public class Thief : Warrior, IWarrior
     {
         Type = WarriorType.Thief;
     }
-    public void Attack(IList<IEnemy> enemies)
+ 
+    public void Attack(IList<IEnemy> enemys)
     {
         throw new NotImplementedException();
     }
+
     public void OpenTreasure()
     { throw new NotImplementedException(); }
 }
