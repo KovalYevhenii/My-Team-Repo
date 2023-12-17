@@ -5,5 +5,6 @@
         void ChangeLavel();
         void SkillAction();
         void AbilityAction();
+        void ChangeLAbility();
     }
 }
