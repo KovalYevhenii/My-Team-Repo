@@ -16,9 +16,9 @@ namespace GServer.Game
 
         }
         //Метод сражения
-        public Battle(IWarrior Warrior, List<IEnemy> Enemys)
+        public Battle(IWarrior Warrior, List<IEnemy> Enemies)
         {
-            Warrior.Attack(Enemys);
+            Warrior.Attack(Enemies);
         }
         //Метод переброски количества врагов
         public Scroll(IEnemy Enemy)

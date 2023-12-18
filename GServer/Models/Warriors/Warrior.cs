@@ -6,6 +6,7 @@
         Guard,
         Mage,
         Scroll,
+        Knight,
         Thief
     }
     public abstract class Warrior

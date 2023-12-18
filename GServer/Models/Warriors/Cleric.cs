@@ -9,14 +9,19 @@ namespace GServer.Models.Warriors
             Type = WarriorType.Cleric;
         }
 
-        public void Attack(IList<IEnemy> enemys)
+        public void Attack(EnemyType type, List<IEnemy> enemies)
         {
-            throw new NotImplementedException();
+            var enemy = enemies.FirstOrDefault(e => e.Type == type);
+            if (enemy != null)
+            {
+                enemies.Remove(enemy);
+            }
         }
 
         public void OpenTreasure()
         {
             throw new NotImplementedException();
         }
+
     }
 }
