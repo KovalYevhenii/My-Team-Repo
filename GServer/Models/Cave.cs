@@ -5,12 +5,12 @@ namespace GServer.Models
 {
     public class Cave
     {
-        public int Lavel;
+        public int Level;
         public List<IEnemy>  Enemies { get; set; }
         public Cave()
         {
             Enemies = new List<IEnemy>();
-            Lavel = 0;
+            Level = 0;
         }
     }
 }
