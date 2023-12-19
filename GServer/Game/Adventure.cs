@@ -2,6 +2,7 @@
 using GServer.Models;
 using GServer.Models.Warriors;
 using GServer.Models.Enemies;
+using GServer.Models.Сemetery
 
 namespace GServer.Game
 {
@@ -11,26 +12,36 @@ namespace GServer.Game
         public Cave Cave { get; set; }
         public ICemtery Cemtery { get; set; }
         public IDragonsDen DragonsDen { get; set; }
-        public Adventure(IHero Hero, Cave Cave, ICemtery Cemtery, IDragonsDen DragonsDen)
+        public Adventure(IHero hero, Cave cave, ICemtery cemtery, IDragonsDen dragonsDen)
         {
+            Hero = hero;
+            Cave = cave;
+            Cemtery = cemtery;
+            DragonsDen = dragonsDen;
+        }
 
-        }
-        //Метод сражения
-        public Battle(IWarrior Warrior, List<IEnemy> Enemies)
+        // Метод сражения
+        public void Battle(IWarrior warrior, List<IEnemy> enemies)
         {
-            Warrior.Attack(Enemies);
+            warrior.Attack(enemies);
         }
-        //Метод переброски количества врагов
-        public Scroll(IEnemy Enemy)
+
+        // Метод переброски количества врагов
+        public void Scroll(IEnemy enemy)
         {
+            // Ваша логика переброски количества врагов
         }
-        //Метод использования навыка
-        public UseHeroSkill()
+
+        // Метод использования навыка
+        public void UseHeroSkill()
         {
+            // Ваша логика использования навыка героя
         }
-        //Метод использования способность
-        public UseHeroAbility()
+
+        // Метод использования способности
+        public void UseHeroAbility()
         {
+            // Ваша логика использования способности героя
         }
     }
 }
