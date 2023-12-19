@@ -4,7 +4,8 @@ namespace GServer.Models.Warriors
 {
     public interface IWarrior
     {
-        public void Attack(List<IEnemy> enemys);
+        public WarriorType Type { get; }
+        public void Attack(EnemyType type, List<IEnemy> enemies);
         public void OpenTreasure();
     }
 }
