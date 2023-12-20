@@ -66,7 +66,7 @@
             // P.S. Нид протестить
 
             // Получить случайный артефакт через рандом и удалить его из статического массива.
-            ArtifactBase artifact = _artifacts.First(art => art.Id == new Random().Next(_artifacts.Count));
+            ArtifactBase artifact = _artifacts.First(art => (art.Id - 1) == new Random().Next(_artifacts.Count));
             _artifacts.Remove(artifact);
             return artifact;
         }
