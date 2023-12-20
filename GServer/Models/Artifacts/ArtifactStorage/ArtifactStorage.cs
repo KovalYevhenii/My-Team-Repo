@@ -20,9 +20,9 @@
                  new WandArtifact(){Id = 9},
                  
                 
-                 new ThieveToolsArtifact(){Id = 10},
-                 new ThieveToolsArtifact(){Id = 11},
-                 new ThieveToolsArtifact(){Id = 12},
+                 new ScrollArtifact(){Id = 10},
+                 new ScrollArtifact(){Id = 11},
+                 new ScrollArtifact(){Id = 12},
                  
                  new ThieveToolsArtifact(){Id = 13},
                  new ThieveToolsArtifact(){Id = 14},
@@ -66,7 +66,7 @@
             // P.S. Нид протестить
 
             // Получить случайный артефакт через рандом и удалить его из статического массива.
-            ArtifactBase artifact = _artifacts.First(art => art.Id == new Random().Next(_artifacts.Count));
+            ArtifactBase artifact = _artifacts.First(art => (art.Id - 1) == new Random().Next(_artifacts.Count));
             _artifacts.Remove(artifact);
             return artifact;
         }
