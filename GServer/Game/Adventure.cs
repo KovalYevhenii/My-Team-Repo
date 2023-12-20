@@ -2,7 +2,7 @@
 using GServer.Models;
 using GServer.Models.Warriors;
 using GServer.Models.Enemies;
-using GServer.Models.Сemetery
+using GServer.Models.TheDragonsDen;
 
 namespace GServer.Game
 {
