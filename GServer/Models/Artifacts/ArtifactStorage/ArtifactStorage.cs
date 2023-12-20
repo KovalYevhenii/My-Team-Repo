@@ -20,9 +20,9 @@
                  new WandArtifact(){Id = 9},
                  
                 
-                 new ThieveToolsArtifact(){Id = 10},
-                 new ThieveToolsArtifact(){Id = 11},
-                 new ThieveToolsArtifact(){Id = 12},
+                 new ScrollArtifact(){Id = 10},
+                 new ScrollArtifact(){Id = 11},
+                 new ScrollArtifact(){Id = 12},
                  
                  new ThieveToolsArtifact(){Id = 13},
                  new ThieveToolsArtifact(){Id = 14},
