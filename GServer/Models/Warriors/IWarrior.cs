@@ -1,11 +1,11 @@
-﻿using GServer.Models.Enemies;
+﻿using GServer.Models.Artifacts;
+using GServer.Models.Enemies;
 
 namespace GServer.Models.Warriors
 {
     public interface IWarrior
     {
-        public WarriorType Type { get; }
-        public void Attack(EnemyType type, List<IEnemy> enemies);
-        public void OpenTreasure();
+        public bool Attack(Enemy enemy);
+        public ArtifactBase OpenTreasure(List<ArtifactBase> artifacts);
     }
 }

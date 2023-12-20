@@ -8,8 +8,6 @@ namespace GServer.Models.Artifacts
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
 
-        public bool IsCanByUsed { get; set; }
-
-       
+        public bool IsCanByUsed { get; set; }  
     }
 }

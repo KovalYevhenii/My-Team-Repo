@@ -1,14 +1,16 @@
-﻿using GServer.Models.Artifacts.Artifact;
+﻿using GServer.Models.Artifacts;
+using GServer.Models.Artifacts.Artifact;
+using GServer.Models.Artifacts.Helpers;
 
 namespace GServer.Models.Enemies;
 public class Treasure : Enemy,IEnemy 
 {
-    public Treasure()
+    public Treasure():base(EnemyType.Treasure)
     {
-        Type = EnemyType.Treasure;
+        Artifact = HelperArtifact.GetArtifact("Take random Artifact");
     }
-    public Artifact Artifact { get; set; }
-    public Artifact Open()
+   public ArtifactBase Artifact { get; }
+    public ArtifactBase Open()
     {
         return Artifact;
     }

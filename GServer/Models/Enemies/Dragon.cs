@@ -2,9 +2,8 @@
 {
     public class Dragon : Enemy, IEnemy
     {
-        public Dragon()
+        public Dragon(): base(EnemyType.Dragon)
         {
-            Type = EnemyType.Dragon;
         }
         public void WakeUp()
         {

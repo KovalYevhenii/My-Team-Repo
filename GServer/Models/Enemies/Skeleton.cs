@@ -2,9 +2,8 @@
 {
     public class Skeleton : Enemy, IEnemy
     {
-        public Skeleton()
-        {
-            Type = EnemyType.Skeleton;   
+        public Skeleton():base(EnemyType.Skeleton)
+        { 
         }
     }
 }

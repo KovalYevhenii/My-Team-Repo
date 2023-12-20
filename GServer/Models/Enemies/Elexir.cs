@@ -2,9 +2,8 @@
 {
     public class Elexir:Enemy
     {
-        public Elexir()
+        public Elexir():base(EnemyType.Elixir)
         {
-            Type = EnemyType.Elixir;   
         }
         public void Drink()
         {

@@ -1,4 +1,5 @@
-﻿using GServer.Models.Enemies;
+﻿using GServer.Models.Artifacts;
+using GServer.Models.Enemies;
 
 namespace GServer.Models.Warriors
 {
@@ -9,16 +10,12 @@ namespace GServer.Models.Warriors
             Type = WarriorType.Cleric;
         }
 
-        public void Attack(EnemyType type, List<IEnemy> enemies)
+        public override bool Attack(Enemy enemy)
         {
-            var enemy = enemies.FirstOrDefault(e => e.Type == type);
-            if (enemy != null)
-            {
-                enemies.Remove(enemy);
-            }
+            return enemy.Type == EnemyType.Goblin || enemy.Type == EnemyType.Slime || enemy.Type == EnemyType.Skeleton;
         }
-
-        public void OpenTreasure()
+ 
+        public override ArtifactBase OpenTreasure(List<ArtifactBase> artifacts)
         {
             throw new NotImplementedException();
         }
