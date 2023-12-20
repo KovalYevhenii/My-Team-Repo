@@ -24,7 +24,7 @@ public class CaveProcess : ICaveProcess
         _enemies = enemies;
         CaveLvl = caveLvl;
     }
-    public void MonsterPhase(List<Enemy> enemies, IWarrior warrior)
+    public void MonsterPhase(IWarrior warrior,List<Enemy> enemies)
     {
 
         for (int i = 0; i < enemies.Count; i++)
@@ -41,7 +41,6 @@ public class CaveProcess : ICaveProcess
                 break;
         }
         _crew.Remove(warrior);
-
     }
     private List<IEnemy> GenerateEnemies()
     {
