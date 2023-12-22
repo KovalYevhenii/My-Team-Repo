@@ -2,6 +2,7 @@
 using GServer.Models.Enemies;
 using GServer.Models.Heroes;
 using GServer.Models.Warriors;
+using GServer.Models.Сemetery;
 
 namespace GServer.GameProcess;
 public class CaveProcess : ICaveProcess
@@ -10,35 +11,30 @@ public class CaveProcess : ICaveProcess
     private List<IEnemy> _enemies;
     private Cave _cave;
     private IHero _hero;
+    private ICemetery _cemetery;
 
     private const int maxCaveLvl = 9;
 
     public int CaveLvl { get; set; }
-    public CaveProcess(IHero hero, List<IWarrior> crew, List<IEnemy> enemies, int caveLvl, Cave cave)
+    public CaveProcess(IHero hero, List<IWarrior> crew, List<IEnemy> enemies, int caveLvl, Cave cave, ICemetery cemetery)
     {
+        _cemetery = cemetery;
         _crew = crew;
         _cave = cave;
         _hero = hero;
         _enemies = enemies;
         CaveLvl = caveLvl;
     }
-    public void MonsterPhase(IWarrior warrior,List<Enemy> enemies)
+    public void MonsterPhase(IWarrior warrior, List<Enemy> enemies)
     {
-
-        for (int i = 0; i < enemies.Count; i++)
+        if (warrior.Attack(enemies, _cave, _cemetery))
         {
-
-            if (enemies[i].Type == EnemyType.Treasure || enemies[i].Type == EnemyType.Elixir)
-                return;
-
-            foreach (var enemy in _cave.Enemies)
-            {
-                _cave.Enemies.Remove(enemies[i]);
-            }
-            if (!warrior.Attack(enemies[i]))
-                break;
+            _crew.Remove(warrior);
         }
-        _crew.Remove(warrior);
+        if(warrior.Type == WarriorType.Scroll)
+        {
+            
+        }
     }
     public void EarningPhase()
     {
