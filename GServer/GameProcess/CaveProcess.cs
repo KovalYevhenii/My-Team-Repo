@@ -10,17 +10,15 @@ public class CaveProcess : ICaveProcess
     private List<IEnemy> _enemies;
     private Cave _cave;
     private IHero _hero;
-    private IEnemyFactory _enemyFactory;
 
     private const int maxCaveLvl = 9;
 
     public int CaveLvl { get; set; }
-    public CaveProcess(IHero hero, List<IWarrior> crew, List<IEnemy> enemies, IEnemyFactory factory, int caveLvl, Cave cave)
+    public CaveProcess(IHero hero, List<IWarrior> crew, List<IEnemy> enemies, int caveLvl, Cave cave)
     {
         _crew = crew;
         _cave = cave;
         _hero = hero;
-        _enemyFactory = factory;
         _enemies = enemies;
         CaveLvl = caveLvl;
     }
@@ -41,17 +39,6 @@ public class CaveProcess : ICaveProcess
                 break;
         }
         _crew.Remove(warrior);
-    }
-    private List<IEnemy> GenerateEnemies()
-    {
-        var enemies = new List<IEnemy>();
-        var enemyCount = Math.Min(CaveLvl, maxCaveLvl);
-
-        for (int i = 0; i < enemyCount; i++)
-        {
-            enemies.Add(_enemyFactory.GenerateRandomEnemy());
-        }
-        return enemies;
     }
     public void EarningPhase()
     {

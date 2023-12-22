@@ -1,4 +1,5 @@
 ﻿using GServer.Models.Artifacts;
+using GServer.Models.Artifacts.ArtifactStorage;
 using GServer.Models.Enemies;
 
 namespace GServer.Models.Warriors
@@ -17,7 +18,9 @@ namespace GServer.Models.Warriors
         public WarriorType Type { get; protected set; }
 
         public abstract bool Attack(Enemy enemy);
-        public abstract ArtifactBase OpenTreasure(List<ArtifactBase> artifacts);
-
+        public virtual ArtifactBase OpenTreasure()
+        {
+            return ArtifactStorage.GetArtifact();
+        }
     }
 }

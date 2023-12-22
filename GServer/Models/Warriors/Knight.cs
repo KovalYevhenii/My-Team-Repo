@@ -7,15 +7,9 @@ namespace GServer.Models.Warriors
         {
             Type = WarriorType.Knight;
         }
-
-        public void Attack(EnemyType enemyType)
+        public override bool Attack(Enemy enemy)
         {
-            throw new NotImplementedException();
-        }
-
-        public void OpenTreasure()
-        {
-            throw new NotImplementedException();
+            return enemy.Type == EnemyType.Goblin || enemy.Type == EnemyType.Slime || enemy.Type == EnemyType.Skeleton;
         }
     }
 }

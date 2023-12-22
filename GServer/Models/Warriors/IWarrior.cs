@@ -6,6 +6,6 @@ namespace GServer.Models.Warriors
     public interface IWarrior
     {
         public bool Attack(Enemy enemy);
-        public ArtifactBase OpenTreasure(List<ArtifactBase> artifacts);
+        public ArtifactBase OpenTreasure();
     }
 }

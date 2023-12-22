@@ -1,20 +1,15 @@
 ﻿using GServer.Models.Enemies;
 
-namespace GServer.Models.Warriors
+namespace GServer.Models.Warriors;
+public class Guard : Warrior, IWarrior
 {
-    public class Guard : Warrior, IWarrior
+    public Guard()
     {
-        public Guard()
-        {
-            Type = WarriorType.Guard;
-        }
-        public void Attack(IList<IEnemy> enemies)
-        {
-            throw new NotImplementedException();
-        }
-        public void OpenTreasure()
-        {
-            throw new NotImplementedException();
-        }
+        Type = WarriorType.Guard;
     }
+    public override bool Attack(Enemy enemy)
+    {
+        return true;
+    }
+   
 }
