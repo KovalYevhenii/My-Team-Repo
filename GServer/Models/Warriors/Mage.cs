@@ -1,4 +1,5 @@
 ﻿using GServer.Models.Enemies;
+using GServer.Models.Сemetery;
 
 namespace GServer.Models.Warriors
 {
@@ -9,13 +10,28 @@ namespace GServer.Models.Warriors
             Type = WarriorType.Mage;
         }
       
-        public void Attack(IList<IEnemy> enemys)
+        public override bool Attack(List<Enemy> enemies, Cave cave, ICemetery cemetery)
         {
-            throw new NotImplementedException();
-        }
-        public void OpenTreasure()
-        {
-            throw new NotImplementedException();
+            bool hasDefeatedAny = false;
+            List<Enemy> enemiesCopy = new(enemies);
+            foreach (var enemy in enemiesCopy)
+            {
+                if ((enemy.Type == EnemyType.Skeleton || enemy.Type == EnemyType.Goblin) && !hasDefeatedAny)
+                {
+                    cave.Enemies.Remove(enemy);
+                    hasDefeatedAny = true;
+                }
+                else if (enemy.Type == EnemyType.Slime)
+                {
+                    cave.Enemies.RemoveAll(enemy => enemy.Type == EnemyType.Goblin);
+                    hasDefeatedAny = true;
+                }
+            }
+            if (hasDefeatedAny)
+            {
+                cemetery.AddWarrior(this);
+            }
+            return hasDefeatedAny;
         }
     }
 }

@@ -27,7 +27,8 @@ public class CaveProcess : ICaveProcess
     }
     public void MonsterPhase(IWarrior warrior, List<Enemy> enemies)
     {
-        if (warrior.Attack(enemies, _cave, _cemetery))
+        bool successful = warrior.Attack(enemies, _cave, _cemetery);
+        if(successful)
         {
             _crew.Remove(warrior);
         }

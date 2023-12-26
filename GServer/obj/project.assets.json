@@ -469,19 +469,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ipere\\.nuget\\packages\\": {}
+    "C:\\Users\\koval\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ipere\\Source\\Repos\\My-Team-Repo\\GServer\\GServer.csproj",
+      "projectUniqueName": "C:\\Users\\koval\\Desktop\\Projekts\\MYTEAM BOARD GAME\\GServer\\GServer.csproj",
       "projectName": "GServer",
-      "projectPath": "C:\\Users\\ipere\\Source\\Repos\\My-Team-Repo\\GServer\\GServer.csproj",
-      "packagesPath": "C:\\Users\\ipere\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ipere\\Source\\Repos\\My-Team-Repo\\GServer\\obj\\",
+      "projectPath": "C:\\Users\\koval\\Desktop\\Projekts\\MYTEAM BOARD GAME\\GServer\\GServer.csproj",
+      "packagesPath": "C:\\Users\\koval\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\koval\\Desktop\\Projekts\\MYTEAM BOARD GAME\\GServer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ipere\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\koval\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

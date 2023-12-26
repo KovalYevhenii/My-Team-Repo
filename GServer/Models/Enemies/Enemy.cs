@@ -10,7 +10,7 @@ public enum EnemyType
 }
 public class Enemy: IEnemy
 {
-    public EnemyType Type { get; set; }
+    public EnemyType Type { get; private set; }
     public Enemy(EnemyType TypeEnemies)
     {
         Type = TypeEnemies;
