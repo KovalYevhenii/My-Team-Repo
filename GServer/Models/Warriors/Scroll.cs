@@ -13,4 +13,12 @@ public class Scroll : Warrior, IWarrior
     {
         return false;
     }
+    public void RethrowDice(List<Warrior> enemies, Cave cave)
+    {
+
+    }
+    public List<IWarrior> GetNewWarriors(List<IWarrior> warriors)
+    {
+        
+    }
 }

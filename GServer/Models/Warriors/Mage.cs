@@ -9,7 +9,6 @@ namespace GServer.Models.Warriors
         {
             Type = WarriorType.Mage;
         }
-      
         public override bool Attack(List<Enemy> enemies, Cave cave, ICemetery cemetery)
         {
             bool hasDefeatedAny = false;
