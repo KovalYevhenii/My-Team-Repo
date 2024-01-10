@@ -27,19 +27,48 @@ public class CaveProcess : ICaveProcess
     }
     public void MonsterPhase(IWarrior warrior, List<Enemy> enemies)
     {
-        bool successful = warrior.Attack(enemies, _cave, _cemetery);
-        if(successful)
+        bool isHeroSkillRequested = false;
+        bool isHeroAbilityRequested = false;
+        if (warrior.Attack(enemies, _cave, _cemetery))
         {
+            _cemetery.AddWarrior(warrior);
             _crew.Remove(warrior);
         }
-        if(warrior.Type == WarriorType.Scroll)
+        if (warrior.Type == WarriorType.Scroll)
         {
-            
+            var (newWarriors, newEnemies) = ((Scroll)warrior).Activate(_crew, _cave.Enemies);
+            _crew = newWarriors;
+            _cave.Enemies = newEnemies;
         }
-    }
-    public void EarningPhase()
-    {
+        if (isHeroSkillRequested)
+        {
+            _hero.SkillAction();  // проверять по навыку героя
+        }
+        if(isHeroAbilityRequested)
+        {
+            _hero.AbilityAction();
+        }
 
+        //Or use Hero ability
+    }
+    public void EarningPhase(IWarrior warrior, List<Enemy> enemies)
+    {
+        if (warrior.Type == WarriorType.Thief || warrior.Type == WarriorType.Guard)
+        {
+            foreach (var enemy in enemies.Where(e => e.Type == EnemyType.Treasure))
+            {
+                var resievedArtifact = warrior.OpenTreasure();
+                //присвоить артефакты герою
+            }
+        }
+        else
+        {
+            var treasure = enemies.FirstOrDefault(e => e.Type == EnemyType.Treasure);
+            if (treasure != null)
+            {
+                var resievedArtifact = warrior.OpenTreasure();
+            }
+        }
     }
     public void DragonPhase()
     {
