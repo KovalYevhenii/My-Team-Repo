@@ -54,17 +54,12 @@
                  new CityPortalArtifact(){Id = 34},
                  new CityPortalArtifact(){Id = 35},
                  new CityPortalArtifact(){Id = 36},
-                
-
-            
-            
             };
         }
 
         public static ArtifactBase GetArtifact() {
 
             // P.S. Нид протестить
-
             // Получить случайный артефакт через рандом и удалить его из статического массива.
             ArtifactBase artifact = _artifacts.First(art => art.Id == new Random().Next(_artifacts.Count));
             _artifacts.Remove(artifact);

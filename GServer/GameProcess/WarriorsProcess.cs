@@ -8,7 +8,7 @@ namespace GServer.GameProcess
 {
     public class WarriorsProcess
     {
-        public IWarrior GetRandomWarrior()
+        public Warrior GetRandomWarrior()
         {
             var warrior = new Guard();
             return warrior;

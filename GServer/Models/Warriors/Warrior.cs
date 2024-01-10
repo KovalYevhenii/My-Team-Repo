@@ -2,15 +2,15 @@
 {
     public enum WarriorType
     {
-        Cleric,
-        Guard,
-        Mage,
-        Scroll,
-        Knight,
-        Thief
+        CLERIC,
+        GUARD,
+        MAGE,
+        SCROLL,
+        KNIGHT,
+        THEIF
     }
     public abstract class Warrior
     {
-        public WarriorType Type { get; set; }
+        public WarriorType type { get; set; }
     }
 }

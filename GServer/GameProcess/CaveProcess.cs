@@ -26,11 +26,9 @@ public class CaveProcess : ICaveProcess
     }
     public void MonsterPhase(List<Enemy> enemies, IWarrior warrior)
     {
-
         for (int i = 0; i < enemies.Count; i++)
         {
-
-            if (enemies[i].Type == EnemyType.Treasure || enemies[i].Type == EnemyType.Elixir)
+            if (enemies[i].type == EnemyType.Treasure || enemies[i].type == EnemyType.Elixir)
                 return;
 
             foreach (var enemy in _cave.Enemies)

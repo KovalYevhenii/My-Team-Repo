@@ -1,15 +1,21 @@
 ﻿using GServer.Models.Artifacts.Artifact;
+using GServer.Models.Enemies.Interfaces;
 
 namespace GServer.Models.Enemies;
-public class Treasure : Enemy,IEnemy 
+public class Treasure : Enemy, ITresure 
 {
-    public Treasure()
+    public Treasure(EnemyType TypeEnemies)
     {
-        Type = EnemyType.Treasure;
+        type = EnemyType.Treasure;
     }
     public Artifact Artifact { get; set; }
     public Artifact Open()
     {
         return Artifact;
+    }
+
+    public Artifact OpenTreasure()
+    {
+        return Open();
     }
 }

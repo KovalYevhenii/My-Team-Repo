@@ -1,4 +1,5 @@
 ﻿using GServer.Models.Enemies;
+
 namespace GServer.Models.Warriors
 {
     public class Knight : Warrior, IWarrior

@@ -13,7 +13,6 @@ namespace GServer.Models.Artifacts
         }
         public string UseArtifact()
         {
-
             ArtifactStorage.ArtifactStorage.AddUsedArtifact(this);
 
             string str = "";

@@ -5,44 +5,24 @@ using System.Xml.Linq;
 
 namespace GServer.Models.Heroes
 {
-    public class Enchantress : Hero, IHero
+    public class Enchantress : Hero
     {
-        public Enchantress()
+        public HeroType GetHeroType()
         {
-            Lavel = 0;
-            Name = eName.ВОЛШЕБНИЦА;
-            Skill = eName.ВОЛШЕБНИЦА;
-            Ability = eName.ВОЛШЕБНИЦА;
-            Scores = 0;
-            //Inventory = new List<IArtifact>();
-            Inventory = new List<Artifact>();
-            Crew = new List<IWarrior>();
+            return type;
         }
 
-        public void ChangeLavel()
+        public void ChangeLavel(int _level)
         {
-            if (Scores >= ScoresToLavelUp)
-            {
-                Lavel = 1;
-                Name = eName.ЧАРОДЕЙКА;
-                Skill = eName.ЧАРОДЕЙКА;
-                Ability = eName.ЧАРОДЕЙКА;
-            }
+            level = _level;
         }
-
-        public void SkillAction()
+        public Enchantress(HeroType _type)
         {
-            throw new NotImplementedException();
-        }
-
-        public void AbilityAction()
-        {
-            throw new NotImplementedException();
+            type = _type;
         }
 
         enum eName
         {
-            NOT,
             ВОЛШЕБНИЦА,
             ЧАРОДЕЙКА,
         }

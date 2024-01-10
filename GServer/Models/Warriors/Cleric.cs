@@ -6,16 +6,22 @@ namespace GServer.Models.Warriors
     {
         public Cleric()
         {
-            Type = WarriorType.Cleric;
+            type = WarriorType.CLERIC;
         }
 
-        public void Attack(EnemyType type, List<IEnemy> enemies)
+        public bool Attack(EnemyType type, List<Enemy> enemies)
         {
-            var enemy = enemies.FirstOrDefault(e => e.Type == type);
+            var enemy = enemies.FirstOrDefault(e => e.type == type);
             if (enemy != null)
             {
                 enemies.Remove(enemy);
             }
+            return true;
+        }
+
+        public bool Attack(EnemyType type, List<IEnemy> enemies)
+        {
+            throw new NotImplementedException();
         }
 
         public void OpenTreasure()
@@ -23,5 +29,9 @@ namespace GServer.Models.Warriors
             throw new NotImplementedException();
         }
 
+        WarriorType IWarrior.GetType()
+        {
+            return type;
+        }
     }
 }
