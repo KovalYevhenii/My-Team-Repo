@@ -1,6 +1,7 @@
 ﻿using GServer.Models;
 using GServer.Models.Enemies;
 using GServer.Models.Heroes;
+using GServer.Models.TheDragonsDen;
 using GServer.Models.Warriors;
 using GServer.Models.Сemetery;
 
@@ -53,15 +54,16 @@ public class CaveProcess : ICaveProcess
     }
     public void EarningPhase(IWarrior warrior, List<Enemy> enemies)
     {
+        Elexir elexir = new();
         if (warrior.Type == WarriorType.Thief || warrior.Type == WarriorType.Guard)
         {
             foreach (var enemy in enemies.Where(e => e.Type == EnemyType.Treasure))
             {
                 var resievedArtifact = warrior.OpenTreasure();
-                //присвоить артефакты герою
+                //присвоить артефакты герою сумка?
             }
         }
-        else
+        else if(warrior.Type == WarriorType.Cleric|| warrior.Type == WarriorType.Knight)
         {
             var treasure = enemies.FirstOrDefault(e => e.Type == EnemyType.Treasure);
             if (treasure != null)
@@ -69,9 +71,21 @@ public class CaveProcess : ICaveProcess
                 var resievedArtifact = warrior.OpenTreasure();
             }
         }
+        if(elexir.CanReturnWarriors(warrior, _cemetery))
+        {
+            _cemetery.AddWarrior(warrior);
+            _crew.Remove(warrior);
+            var elexirs = enemies.Where(e => e.Type == EnemyType.Elixir).ToList();
+            foreach(var e in elexirs)
+            {
+                _cemetery.GetWarrior(warrior);
+                _crew.Add(warrior);
+            }
+        } 
     }
-    public void DragonPhase()
+    public void DragonPhase(IDragonsDen dragonsDen)
     {
+
     }
     public void ReGroupPhase()
     {

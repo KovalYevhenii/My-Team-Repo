@@ -17,7 +17,6 @@ namespace GServer.Models.Warriors
     public abstract class Warrior: IWarrior
     {
         public WarriorType Type { get; protected set; }
-
         public abstract bool Attack(List<Enemy> enemies,Cave cave, ICemetery cemetery);
         public virtual ArtifactBase OpenTreasure()
         {
