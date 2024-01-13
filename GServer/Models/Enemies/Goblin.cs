@@ -2,9 +2,8 @@
 {
     public class Goblin:Enemy,IEnemy
     {
-        public Goblin()
+        public Goblin():base(EnemyType.Goblin)
         {
-            Type = EnemyType.Goblin;
         }
     }
 }

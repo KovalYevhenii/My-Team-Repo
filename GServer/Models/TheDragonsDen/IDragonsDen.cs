@@ -1,3 +1,4 @@
+using GServer.Models.Enemies;
 using System;
 using System.Collections.Generic;
 using System.Linq;

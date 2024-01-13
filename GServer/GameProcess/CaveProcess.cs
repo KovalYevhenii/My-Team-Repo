@@ -1,7 +1,11 @@
 ﻿using GServer.Models;
+using GServer.Models.Artifacts;
 using GServer.Models.Enemies;
 using GServer.Models.Heroes;
+using GServer.Models.TheDragonsDen;
 using GServer.Models.Warriors;
+using GServer.Models.Сemetery;
+using System.Collections.Generic;
 
 namespace GServer.GameProcess;
 public class CaveProcess : ICaveProcess
@@ -10,59 +14,87 @@ public class CaveProcess : ICaveProcess
     private List<IEnemy> _enemies;
     private Cave _cave;
     private IHero _hero;
-    private IEnemyFactory _enemyFactory;
-
-    private const int maxCaveLvl = 9;
-
-    public int CaveLvl { get; set; }
-    public CaveProcess(IHero hero, List<IWarrior> crew, List<IEnemy> enemies, IEnemyFactory factory, int caveLvl, Cave cave)
+    private ICemetery _cemetery;
+    private IDragonsDen _dragonsDen;
+    public CaveProcess(IHero hero, List<IWarrior> crew, List<IEnemy> enemies, Cave cave, ICemetery cemetery, IDragonsDen dragonsDen)
     {
+        _cemetery = cemetery;
         _crew = crew;
         _cave = cave;
         _hero = hero;
-        _enemyFactory = factory;
         _enemies = enemies;
-        CaveLvl = caveLvl;
+        _dragonsDen = dragonsDen;
     }
-    public void MonsterPhase(List<Enemy> enemies, IWarrior warrior)
+    public void MonsterPhase(IWarrior warrior, List<Enemy> enemies)
     {
-
-        for (int i = 0; i < enemies.Count; i++)
+        bool isHeroSkillRequested = false;
+        bool isHeroAbilityRequested = false;
+        if (warrior.Attack(enemies, _cave, _cemetery))
         {
+            _cemetery.AddWarrior(warrior);
+            _crew.Remove(warrior);
+        }
+        if (warrior.Type == WarriorType.Scroll)
+        {
+            var (newWarriors, newEnemies) = ((Scroll)warrior).Activate(_crew, _cave.Enemies, _dragonsDen);
+            _crew = newWarriors;
+            _cave.Enemies = newEnemies;
+        }
+        // In DragonsDen need to check amount to start the battle
+        if (isHeroSkillRequested)
+        {
+            _hero.SkillAction();  // проверять по навыку героя
+        }
+        if (isHeroAbilityRequested)
+        {
+            _hero.AbilityAction();
+        }
 
-            if (enemies[i].Type == EnemyType.Treasure || enemies[i].Type == EnemyType.Elixir)
-                return;
-
-            foreach (var enemy in _cave.Enemies)
+        //Or use Hero ability
+    }
+    public void EarningPhase(IWarrior warrior, List<Enemy> enemies)
+    {
+        if (warrior.Type == WarriorType.Thief || warrior.Type == WarriorType.Guard)
+        {
+            foreach (var enemy in enemies.Where(e => e.Type == EnemyType.Treasure))
             {
-                _cave.Enemies.Remove(enemies[i]);
+                var resievedArtifact = warrior.OpenTreasure();
+                //присвоить артефакты герою сумка?
             }
-            if (!warrior.Attack(enemies[i]))
-                break;
         }
-        _crew.Remove(warrior);
-
-    }
-    private List<IEnemy> GenerateEnemies()
-    {
-        var enemies = new List<IEnemy>();
-        var enemyCount = Math.Min(CaveLvl, maxCaveLvl);
-
-        for (int i = 0; i < enemyCount; i++)
+        else if (warrior.Type == WarriorType.Cleric || warrior.Type == WarriorType.Knight)
         {
-            enemies.Add(_enemyFactory.GenerateRandomEnemy());
+            var treasure = enemies.FirstOrDefault(e => e.Type == EnemyType.Treasure);
+            if (treasure != null)
+            {
+                var resievedArtifact = warrior.OpenTreasure();
+            }
         }
-        return enemies;
-    }
-    public void EarningPhase()
-    {
+        if (warrior != null && enemies.All(e => e.Type == EnemyType.Elixir))
+        {
+            _cemetery.AddWarrior(warrior);
+            _crew.Remove(warrior);
 
+            var elexirs = enemies.Where(e => e.Type == EnemyType.Elixir).ToList();
+
+            foreach (var e in elexirs)
+            {
+                _cemetery.GetWarrior(warrior);
+                _crew.Add(warrior);
+            }
+        }
     }
-    public void DragonPhase()
+    public void DragonPhase(List<IWarrior> warriors, List<ArtifactBase> artifacts)
     {
+        Dragon dragon = new();
+
+        if (dragon.IsVulnerable(warriors, artifacts))
+        {
+            _dragonsDen.StartBattle();
+        }
     }
     public void ReGroupPhase()
     {
-    }
 
+    }
 }

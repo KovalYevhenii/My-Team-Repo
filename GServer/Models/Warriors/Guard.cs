@@ -1,20 +1,22 @@
 ﻿using GServer.Models.Enemies;
+using GServer.Models.Сemetery;
 
-namespace GServer.Models.Warriors
+namespace GServer.Models.Warriors;
+public class Guard : Warrior, IWarrior
 {
-    public class Guard : Warrior, IWarrior
+    public Guard()
     {
-        public Guard()
+        Type = WarriorType.Guard;
+    }
+    public override bool Attack(List<Enemy> enemies, Cave cave, ICemetery cemetery)
+    {
+       int initialCount = cave.Enemies.Count;
+        cave.Enemies.RemoveAll(e => e.Type == EnemyType.Slime || e.Type == EnemyType.Goblin || e.Type == EnemyType.Skeleton);
+        int finalCount = cave.Enemies.Count;
+        if (initialCount > finalCount)
         {
-            Type = WarriorType.Guard;
+            cemetery.AddWarrior(this);
         }
-        public void Attack(IList<IEnemy> enemies)
-        {
-            throw new NotImplementedException();
-        }
-        public void OpenTreasure()
-        {
-            throw new NotImplementedException();
-        }
+        return initialCount > finalCount;  // If any enemy was removed, return true
     }
 }

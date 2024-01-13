@@ -2,9 +2,8 @@
 {
     public class Slime : Enemy, IEnemy
     {
-        public Slime()
+        public Slime():base(EnemyType.Slime)
         {
-            Type = EnemyType.Slime;
         }
     }
 }

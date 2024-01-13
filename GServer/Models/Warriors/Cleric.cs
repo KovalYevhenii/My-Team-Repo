@@ -1,27 +1,37 @@
-﻿using GServer.Models.Enemies;
+﻿
+using GServer.Models.Enemies;
+using GServer.Models.Сemetery;
+using System;
 
-namespace GServer.Models.Warriors
+namespace GServer.Models.Warriors;
+public class Cleric : Warrior, IWarrior
 {
-    public class Cleric : Warrior, IWarrior
+    public Cleric()
     {
-        public Cleric()
-        {
-            Type = WarriorType.Cleric;
-        }
+        Type = WarriorType.Cleric;
+    }
+    public override bool Attack(List<Enemy> enemies, Cave cave, ICemetery cemetery)
+    {
+        bool hasDefeatedAny = false;
+        List<Enemy> enemiesCopy = new(enemies);
 
-        public void Attack(EnemyType type, List<IEnemy> enemies)
+        foreach (var enemy in enemiesCopy)
         {
-            var enemy = enemies.FirstOrDefault(e => e.Type == type);
-            if (enemy != null)
+            if ((enemy.Type == EnemyType.Goblin || enemy.Type == EnemyType.Slime) && !hasDefeatedAny)
             {
-                enemies.Remove(enemy);
+                cave.Enemies.Remove(enemy);
+                hasDefeatedAny = true;
+            }
+            else if (enemy.Type == EnemyType.Skeleton)
+            {
+                cave.Enemies.RemoveAll(enemy => enemy.Type == EnemyType.Skeleton);
+                hasDefeatedAny = true;
             }
         }
-
-        public void OpenTreasure()
+        if(hasDefeatedAny)
         {
-            throw new NotImplementedException();
+            cemetery.AddWarrior(this);
         }
-
+        return hasDefeatedAny;
     }
 }

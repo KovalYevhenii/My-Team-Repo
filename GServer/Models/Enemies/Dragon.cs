@@ -1,14 +1,20 @@
-﻿namespace GServer.Models.Enemies
+﻿using GServer.Models.Artifacts;
+using GServer.Models.Artifacts.Interfaces;
+using GServer.Models.Warriors;
+
+namespace GServer.Models.Enemies
 {
     public class Dragon : Enemy, IEnemy
     {
-        public Dragon()
+        public int Count { get; set; }
+        public Dragon() : base(EnemyType.Dragon)
         {
-            Type = EnemyType.Dragon;
         }
-        public void WakeUp()
+        public bool IsVulnerable(List<IWarrior> warriors, List<ArtifactBase> artifacts)
         {
-            throw new NotImplementedException();
+            int itemsToBeat = 3;
+            var warriorsArtifacts = artifacts.OfType<IArtifactWarrior>().ToList();
+            return warriors.Count + warriorsArtifacts.Count == itemsToBeat ;
         }
     }
 }
