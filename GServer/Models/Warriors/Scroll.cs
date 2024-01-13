@@ -1,4 +1,5 @@
 ﻿using GServer.Models.Enemies;
+using GServer.Models.TheDragonsDen;
 using GServer.Models.Сemetery;
 namespace GServer.Models.Warriors;
 public class Scroll : Warrior, IWarrior
@@ -12,11 +13,19 @@ public class Scroll : Warrior, IWarrior
     {
         return false;
     }
-    public (List<IWarrior>, List<IEnemy>) Activate(List<IWarrior> chosenWarriors, List<IEnemy> chosenEnemies)
+    public (List<IWarrior>, List<IEnemy>) Activate(List<IWarrior> chosenWarriors, List<IEnemy> chosenEnemies, IDragonsDen dragonsDen)
     {
         var newEnemies = GenerateRandomEnemies(chosenEnemies);
+        foreach (var enemy in newEnemies)
+        {
+            if (enemy.Type == EnemyType.Dragon)
+            {
+                dragonsDen.AddDragon(new Dragon());
+                newEnemies.Remove(enemy);
+            }
+        }
         var newWarriors = GenerateRandomWarriors(chosenWarriors);
-        return(newWarriors, newEnemies);
+        return (newWarriors, newEnemies);
     }
     private List<IWarrior> GenerateRandomWarriors(List<IWarrior> warriors)
     {
@@ -25,7 +34,7 @@ public class Scroll : Warrior, IWarrior
 
         for (int i = 0; i < warriorsAmount; i++)
         {
-            var warriorType = (WarriorType)_random.Next(Enum.GetNames(typeof(WarriorType)).Length);
+            var warriorType = GetRandomEnumValues<WarriorType>();
             switch (warriorType)
             {
                 case WarriorType.Cleric:
@@ -56,9 +65,15 @@ public class Scroll : Warrior, IWarrior
         var newEnemies = new List<IEnemy>();
         for (int i = 0; i < enemiesAmount; i++)
         {
-            var enemyType = (EnemyType)_random.Next(Enum.GetNames(typeof(EnemyType)).Length);
+            var enemyType = GetRandomEnumValues<EnemyType>();
             newEnemies.Add(new Enemy(enemyType));
         }
         return newEnemies;
+    }
+    private T GetRandomEnumValues<T>()
+    where T : Enum
+    {
+        var values = Enum.GetValues(typeof(T));
+        return (T)values.GetValue(_random.Next(values.Length));
     }
 }
