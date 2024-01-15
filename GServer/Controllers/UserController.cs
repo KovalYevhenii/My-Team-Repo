@@ -29,6 +29,7 @@ namespace GServer.Controllers
                 // По chatId в базу получить сессию
                 // Не нашел сессию то должен вернуть sessionId
                 // Если он нашел сессию то
+
                 return Ok(result);
             }
             catch (Exception ex)
