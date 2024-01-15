@@ -6,13 +6,24 @@ namespace GServer.Models.Warriors
     {
         public Guard()
         {
-            Type = WarriorType.Guard;
+            WarriorType type = WarriorType.GUARD;
         }
         public void Attack(IList<IEnemy> enemies)
         {
             throw new NotImplementedException();
         }
+
+        public bool Attack(Enemy enemy)
+        {
+            throw new NotImplementedException();
+        }
+
         public void OpenTreasure()
+        {
+            throw new NotImplementedException();
+        }
+
+        WarriorType IWarrior.GetType()
         {
             throw new NotImplementedException();
         }

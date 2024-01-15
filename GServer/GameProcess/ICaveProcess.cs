@@ -4,5 +4,5 @@ using GServer.Models.Warriors;
 namespace GServer.GameProcess;
 public interface ICaveProcess
 {
-    void MonsterPhase(List<IWarrior> warriors, List<IEnemy> enemies);
+    void MonsterPhase(IWarrior warrior, List<Enemy> enemies);
 }

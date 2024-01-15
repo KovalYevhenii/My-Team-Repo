@@ -12,9 +12,9 @@ namespace GServer.Models
             Enemies = new List<Enemy>();
             level = 0;
         }
-        public void LevelUp (int upLevel)
+        public void LevelUp ()
         {
-            level = upLevel;
+            ++level;
         }
     }
 }

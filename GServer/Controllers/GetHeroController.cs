@@ -6,7 +6,7 @@ namespace GServer.Controllers
     public class GetHeroController
     {
         private HeroProcess _heroProcess;
-        public string GetHero()
+        public Hero GetHero()
         {
             _heroProcess = new HeroProcess();
             Hero _hero = _heroProcess.GetRandomHero();

@@ -9,13 +9,14 @@ public class CaveProcess : ICaveProcess
     private List<IWarrior> _crew;
     private List<IEnemy> _enemies;
     private Cave _cave;
-    private IHero _hero;
+    private Hero _hero;
     private IEnemyFactory _enemyFactory;
+    private string session;
 
     private const int maxCaveLvl = 9;
 
     public int CaveLvl { get; set; }
-    public CaveProcess(IHero hero, List<IWarrior> crew, List<IEnemy> enemies, IEnemyFactory factory, int caveLvl, Cave cave)
+    public CaveProcess(Hero hero, List<IWarrior> crew, List<IEnemy> enemies, IEnemyFactory factory, int caveLvl, Cave cave)
     {
         _crew = crew;
         _cave = cave;
@@ -24,7 +25,7 @@ public class CaveProcess : ICaveProcess
         _enemies = enemies;
         CaveLvl = caveLvl;
     }
-    public void MonsterPhase(List<Enemy> enemies, IWarrior warrior)
+    public void MonsterPhase(IWarrior warrior, List<Enemy> enemies)
     {
         for (int i = 0; i < enemies.Count; i++)
         {
@@ -39,7 +40,6 @@ public class CaveProcess : ICaveProcess
                 break;
         }
         _crew.Remove(warrior);
-
     }
     private List<IEnemy> GenerateEnemies()
     {
@@ -62,5 +62,4 @@ public class CaveProcess : ICaveProcess
     public void ReGroupPhase()
     {
     }
-
 }
