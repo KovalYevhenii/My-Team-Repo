@@ -27,6 +27,12 @@ public class Cleric : Warrior, IWarrior
                 cave.Enemies.RemoveAll(enemy => enemy.Type == EnemyType.Skeleton);
                 hasDefeatedAny = true;
             }
+            return true;
+        }
+
+        public bool Attack(EnemyType type, List<IEnemy> enemies)
+        {
+            throw new NotImplementedException();
         }
         if(hasDefeatedAny)
         {
