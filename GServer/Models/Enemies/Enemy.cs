@@ -8,11 +8,11 @@ public enum EnemyType
     Elixir,
     Dragon
 }
-abstract public class Enemy
+ public class Enemy: IEnemy
 {
     public EnemyType Type { get; private set; }
     public Enemy(EnemyType TypeEnemies)
     {
-        type = TypeEnemies;
+        Type = TypeEnemies;
     }
 }

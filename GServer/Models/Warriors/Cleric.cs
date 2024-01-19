@@ -10,6 +10,7 @@ public class Cleric : Warrior, IWarrior
     {
         Type = WarriorType.Cleric;
     }
+
     public override bool Attack(List<Enemy> enemies, Cave cave, ICemetery cemetery)
     {
         bool hasDefeatedAny = false;
@@ -27,17 +28,12 @@ public class Cleric : Warrior, IWarrior
                 cave.Enemies.RemoveAll(enemy => enemy.Type == EnemyType.Skeleton);
                 hasDefeatedAny = true;
             }
-            return true;
         }
-
-        public bool Attack(EnemyType type, List<IEnemy> enemies)
-        {
-            throw new NotImplementedException();
-        }
-        if(hasDefeatedAny)
+        if (hasDefeatedAny)
         {
             cemetery.AddWarrior(this);
         }
         return hasDefeatedAny;
     }
 }
+

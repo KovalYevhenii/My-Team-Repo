@@ -7,12 +7,12 @@ namespace GServer.Models.Warriors
 {
     public enum WarriorType
     {
-        CLERIC,
-        GUARD,
-        MAGE,
-        SCROLL,
-        KNIGHT,
-        THEIF
+        Cleric,
+        Guard,
+        Mage,
+        Scroll,
+        Knight,
+        Thief
     }
     public abstract class Warrior: IWarrior
     {
