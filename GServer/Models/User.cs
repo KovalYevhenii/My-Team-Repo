@@ -2,7 +2,9 @@
 {
     public class User
     {
-        protected int ChatId { get; set; }
-        protected string UserName { get; set; }
+        protected int id { get; set; }
+        protected int? chatId { get; set; }
+        protected string name { get; set; }
+        private string session { get; set; }
     }
 }

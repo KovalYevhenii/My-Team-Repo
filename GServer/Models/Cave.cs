@@ -5,12 +5,16 @@ namespace GServer.Models
 {
     public class Cave
     {
-        public int Level;
-        public List<IEnemy>  Enemies { get; set; }
+        public int level;
+        public List<Enemy>  Enemies { get; set; }
         public Cave()
         {
-            Enemies = new List<IEnemy>();
-            Level = 0;
+            Enemies = new List<Enemy>();
+            level = 0;
+        }
+        public void LevelUp ()
+        {
+            ++level;
         }
     }
 }
