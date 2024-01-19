@@ -3,6 +3,7 @@ using GServer.Models;
 using GServer.Models.Warriors;
 using GServer.Models.Enemies;
 using GServer.Models.TheDragonsDen;
+using GServer.Models.Сemetery;
 
 namespace GServer.Game
 {
@@ -10,9 +11,9 @@ namespace GServer.Game
     {
         public IHero Hero { get; set; }
         public Cave Cave { get; set; }
-        public ICemtery Cemtery { get; set; }
+        public ICemetery Cemtery { get; set; }
         public IDragonsDen DragonsDen { get; set; }
-        public Adventure(IHero hero, Cave cave, ICemtery cemtery, IDragonsDen dragonsDen)
+        public Adventure(IHero hero, Cave cave, ICemetery cemtery, IDragonsDen dragonsDen)
         {
             Hero = hero;
             Cave = cave;
@@ -23,7 +24,7 @@ namespace GServer.Game
         // Метод сражения
         public void Battle(IWarrior warrior, List<IEnemy> enemies)
         {
-            warrior.Attack(enemies);
+         //   warrior.Attack(enemies);
         }
 
         // Метод переброски количества врагов

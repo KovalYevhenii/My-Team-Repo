@@ -40,6 +40,11 @@ namespace GServer.Models.Heroes
             throw new NotImplementedException();
         }
 
+        public void ChangeLAbility()
+        {
+            throw new NotImplementedException();
+        }
+
         enum eName
         {
             NOT,

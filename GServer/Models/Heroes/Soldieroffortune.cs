@@ -7,6 +7,11 @@
             throw new NotImplementedException();
         }
 
+        public void ChangeLAbility()
+        {
+            throw new NotImplementedException();
+        }
+
         public void ChangeLavel()
         {
             throw new NotImplementedException();
