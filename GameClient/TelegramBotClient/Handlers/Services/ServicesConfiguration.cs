@@ -15,7 +15,8 @@ public class ServicesConfiguration:IServicesConfiguration
         services.TryAddSingleton((ITelegramBotClient)new Telegram.Bot.TelegramBotClient(_token));
         services.TryAddSingleton<ITelegramBotHandler, TelegramBotHandler>();
         services.TryAddSingleton<ITextMessageHandler, TextMessageHandler>();
-        services.TryAddSingleton<GameKeyboard>();
         services.TryAddSingleton<IBotRunner, BotRunner>();
+        services.TryAddSingleton<IGameKeyboard, GameKeyboard>();
+        services.TryAddSingleton<ICallbackHandler, CallBackHandler>();
     }
 }
