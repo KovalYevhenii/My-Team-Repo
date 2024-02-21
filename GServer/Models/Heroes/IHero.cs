@@ -2,9 +2,7 @@
 {
     public interface IHero
     {
+        public HeroType GetType();
         void ChangeLavel();
-        void SkillAction();
-        void AbilityAction();
-        void ChangeLAbility();
     }
 }

@@ -1,19 +1,36 @@
-﻿using Telegram.Bot.Types.ReplyMarkups;
+﻿using Telegram.Bot;
+using Telegram.Bot.Types;
+using Telegram.Bot.Types.ReplyMarkups;
+using TelegramBotClient.Handlers.Interfaces;
 namespace TelegramBotClient;
-public class GameKeyboard
+public class GameKeyboard: IGameKeyboard
 {
-    public ReplyKeyboardMarkup CreateExampleKeyboard()
+    public async Task VersionKeyboard(ITelegramBotClient botClient, ChatId chatId)
     {
-        var button1 = KeyboardButtonFactory.CreateButton("1");
-        var button2 = KeyboardButtonFactory.CreateButton("2");
-        var button3 = KeyboardButtonFactory.CreateButton("3");
-        var button4 = KeyboardButtonFactory.CreateButton("4");
-
-        var replyKeyboard = new ReplyKeyboardMarkup(new[]
+        var keyboard = new InlineKeyboardMarkup(new[]
         {
-            new[] { button1, button2 },
-            new[] { button3, button4 }
+            new [] 
+            {
+                InlineKeyboardButton.WithCallbackData("Однопользовательская"),
+                InlineKeyboardButton.WithCallbackData("Многопользовательская"),
+            }
         });
-        return replyKeyboard;
+
+        await botClient.SendTextMessageAsync(chatId,
+            "Выбор версии", replyMarkup: keyboard);
+    }
+    public async Task StartingGameKeyboard(ITelegramBotClient botClient, ChatId chatId)
+    {
+        var keyboard = new InlineKeyboardMarkup(new[]
+        {
+            new [] 
+            {
+                InlineKeyboardButton.WithCallbackData("Yes"),
+                InlineKeyboardButton.WithCallbackData("No"),
+            }
+        });
+
+        await botClient.SendTextMessageAsync(chatId,
+            "Начать игру?", replyMarkup: keyboard);
     }
 }

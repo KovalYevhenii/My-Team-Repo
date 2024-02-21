@@ -9,10 +9,10 @@ namespace GServer.Models.Warriors
         {
             Type = WarriorType.Mage;
         }
-        public override bool Attack(List<Enemy> enemies, Cave cave, ICemetery cemetery)
+        public override bool Attack(List<IEnemy> enemies, Cave cave, ICemetery cemetery)
         {
             bool hasDefeatedAny = false;
-            List<Enemy> enemiesCopy = new(enemies);
+            List<IEnemy> enemiesCopy = new(enemies);
             foreach (var enemy in enemiesCopy)
             {
                 if ((enemy.Type == EnemyType.Skeleton || enemy.Type == EnemyType.Goblin) && !hasDefeatedAny)

@@ -5,8 +5,6 @@ using GServer.Models.Heroes;
 using GServer.Models.TheDragonsDen;
 using GServer.Models.Warriors;
 using GServer.Models.Сemetery;
-using System.Collections.Generic;
-
 namespace GServer.GameProcess;
 public class CaveProcess : ICaveProcess
 {
@@ -25,7 +23,7 @@ public class CaveProcess : ICaveProcess
         _enemies = enemies;
         _dragonsDen = dragonsDen;
     }
-    public void MonsterPhase(IWarrior warrior, List<Enemy> enemies)
+    public void MonsterPhase(IWarrior warrior, List<IEnemy> enemies)
     {
         bool isHeroSkillRequested = false;
         bool isHeroAbilityRequested = false;
@@ -43,11 +41,11 @@ public class CaveProcess : ICaveProcess
         // In DragonsDen need to check amount to start the battle
         if (isHeroSkillRequested)
         {
-            _hero.SkillAction();  // проверять по навыку героя
+            //_hero.SkillAction();  // проверять по навыку героя
         }
         if (isHeroAbilityRequested)
         {
-            _hero.AbilityAction();
+            //_hero.AbilityAction();
         }
 
         //Or use Hero ability
@@ -84,14 +82,14 @@ public class CaveProcess : ICaveProcess
             }
         }
     }
-    public void DragonPhase(List<IWarrior> warriors, List<ArtifactBase> artifacts)
+    public bool DragonPhase(List<IWarrior> warriors, List<ArtifactBase> artifacts)
     {
         Dragon dragon = new();
-
-        if (dragon.IsVulnerable(warriors, artifacts))
+        if (_dragonsDen.DragonsCount < 3)
         {
-            _dragonsDen.StartBattle();
+            return false;
         }
+        return dragon.IsVulnerable(warriors, artifacts);
     }
     public void ReGroupPhase()
     {

@@ -6,7 +6,6 @@ namespace GServer.Models.Enemies
 {
     public class Dragon : Enemy, IEnemy
     {
-        public int Count { get; set; }
         public Dragon() : base(EnemyType.Dragon)
         {
         }
@@ -14,7 +13,8 @@ namespace GServer.Models.Enemies
         {
             int itemsToBeat = 3;
             var warriorsArtifacts = artifacts.OfType<IArtifactWarrior>().ToList();
-            return warriors.Count + warriorsArtifacts.Count == itemsToBeat ;
+            return warriors.Count + warriorsArtifacts.Count == itemsToBeat;
         }
+        
     }
 }

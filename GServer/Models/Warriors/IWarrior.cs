@@ -7,7 +7,7 @@ namespace GServer.Models.Warriors
     public interface IWarrior
     {
         public WarriorType Type { get; }
-        public bool Attack(List<Enemy> enemies, Cave cave, ICemetery cemetery);
+        public bool Attack(List<IEnemy> enemies, Cave cave, ICemetery cemetery);
         public ArtifactBase OpenTreasure();
     }
 }

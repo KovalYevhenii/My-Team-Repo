@@ -2,15 +2,16 @@
 using GServer.Models.Artifacts.ArtifactStorage;
 
 namespace GServer.Models.Enemies;
-public class Treasure : Enemy,IEnemy 
-{
-    public Treasure():base(EnemyType.Treasure)
+    public class Treasure : Enemy, IEnemy
     {
-        Artifact = ArtifactStorage.GetArtifact();
+        public Treasure() : base(EnemyType.Treasure)
+        {
+            Artifact = ArtifactStorage.GetArtifact();
+        }
+        public ArtifactBase Artifact { get; }
+        public ArtifactBase Open()
+        {
+            return Artifact;
+        }
     }
-   public ArtifactBase Artifact { get; }
-    public ArtifactBase Open()
-    {
-        return Artifact;
-    }
-}
+

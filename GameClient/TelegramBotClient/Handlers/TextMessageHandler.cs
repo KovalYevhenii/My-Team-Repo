@@ -3,11 +3,11 @@ using Telegram.Bot;
 using TelegramBotClient.Handlers.Interfaces;
 
 namespace TelegramBotClient.Handlers;
-public class TextMessageHandler:ITextMessageHandler 
+public class TextMessageHandler : ITextMessageHandler
 {
     private readonly ITelegramBotClient _botClient;
-    private readonly GameKeyboard _startMenuKeyboard;
-    public TextMessageHandler(ITelegramBotClient botClient, GameKeyboard startMenuKeyboard)
+    private readonly IGameKeyboard _startMenuKeyboard;
+    public TextMessageHandler(ITelegramBotClient botClient, IGameKeyboard startMenuKeyboard)
     {
         _botClient = botClient;
         _startMenuKeyboard = startMenuKeyboard;
@@ -17,8 +17,8 @@ public class TextMessageHandler:ITextMessageHandler
         switch (message)
         {
             case "/start":
-               var replyKeyboard =  _startMenuKeyboard.CreateExampleKeyboard();
-                await _botClient.SendTextMessageAsync(chatId, "Choose an Option", replyMarkup: replyKeyboard);
+                await _startMenuKeyboard.VersionKeyboard(_botClient, chatId);
+
                 break;
             case "Action1":
                 await _botClient.SendTextMessageAsync(chatId, "Режим для одного");

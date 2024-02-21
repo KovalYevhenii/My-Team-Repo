@@ -9,7 +9,7 @@ public class Scroll : Warrior, IWarrior
     {
         Type = WarriorType.Scroll;
     }
-    public override bool Attack(List<Enemy> enemies, Cave cave, ICemetery cemetery)
+    public override bool Attack(List<IEnemy> enemies, Cave cave, ICemetery cemetery)
     {
         return false;
     }
