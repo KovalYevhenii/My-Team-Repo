@@ -4,12 +4,12 @@
     {
         public string GetSessionByLogin(string login)
         {
-            return;
+           throw new NotImplementedException();
         }
 
         public string CreateNewSession(string login)
         {
-            return;
+           throw new NotImplementedException();
         }
     }
 }

@@ -34,6 +34,7 @@ internal class TelegramBotHandler : ITelegramBotHandler
             case UpdateType.CallbackQuery:
                 var callbackQuery = update.CallbackQuery;
                 var chatIdCallback = GetChatId(update);
+
                 if (callbackQuery != null)
                 {
                     await _callbackHandler.BotOnCallbackDataReceiving(callbackQuery, chatIdCallback);

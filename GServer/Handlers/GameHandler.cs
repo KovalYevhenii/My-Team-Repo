@@ -7,8 +7,8 @@ namespace GServer.Handlers
     {
         public void StartGame(string session, Dictionary<string, HeroType> response)
         {
-            HeroProcess.GetRandomHero();
-            Sessesion.saveSession();
+           // HeroProcess.GetRandomHero();
+           // Sessesion.saveSession();
         }
 
         public void MonsterPhase(string session, List<string> data)

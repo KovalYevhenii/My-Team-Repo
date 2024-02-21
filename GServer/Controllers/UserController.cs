@@ -1,35 +1,32 @@
-﻿using GServer.GameProcess;
-using GServer.Handlers;
-using GServer.Models.Heroes;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.VisualBasic;
-
+﻿using Microsoft.AspNetCore.Mvc;
 namespace GServer.Controllers
 {
     [ApiController]
     [Produces("application/json")]
-    [Route("user/[controller]")]
+    [Route("api/user")]
     public class UserController : ControllerBase
     {
-        private string sessionid;
-        private IHttpContextAccessor _context;
-        
-        public UserController(IHttpContextAccessor context) {
-            _context = context;
-            sessionid = _context.HttpContext.Request.Cookies["session"];
-        }
-
-        public ActionResult<Dictionary<string, bool>> GetSession(IHttpContextAccessor context)
+        [HttpGet("Session")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public ActionResult<Dictionary<string, bool>> GetSession([FromQuery] long chatId)
         {
-            Dictionary<string, bool> result = new Dictionary<string, bool>() { };
             try
             {
-                string chatId = _context.HttpContext.Request.Cookies["chatid"];
-                // По chatId в базу получить сессию
-                // Не нашел сессию то должен вернуть sessionId
-                // Если он нашел сессию то
-
+                Dictionary<string, bool> result;
+                Console.WriteLine(chatId);
+                // Simulate getting session from the database
+                if (chatId != 0)
+                {
+                    // If there's no chatId in the session, simulate creating a new session
+                    result = new Dictionary<string, bool> { { "sessionId", true } };  
+                }
+                else
+                {//simulate getting existing session
+                    result = new Dictionary<string, bool> { { "sessionExists", true } };
+                }
                 return Ok(result);
             }
             catch (Exception ex)

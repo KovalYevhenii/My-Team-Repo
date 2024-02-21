@@ -14,10 +14,10 @@ namespace GServer.Models.Warriors
         Knight,
         Thief
     }
-    public abstract class Warrior: IWarrior
+    public abstract class Warrior : IWarrior
     {
         public WarriorType Type { get; protected set; }
-        public abstract bool Attack(List<Enemy> enemies,Cave cave, ICemetery cemetery);
+        public abstract bool Attack(List<IEnemy> enemies, Cave cave, ICemetery cemetery);
         public virtual ArtifactBase OpenTreasure()
         {
             return ArtifactStorage.GetArtifact();

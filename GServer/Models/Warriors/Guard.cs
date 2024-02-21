@@ -8,7 +8,7 @@ public class Guard : Warrior, IWarrior
     {
         Type = WarriorType.Guard;
     }
-    public override bool Attack(List<Enemy> enemies, Cave cave, ICemetery cemetery)
+    public override bool Attack(List<IEnemy> enemies, Cave cave, ICemetery cemetery)
     {
        int initialCount = cave.Enemies.Count;
         cave.Enemies.RemoveAll(e => e.Type == EnemyType.Slime || e.Type == EnemyType.Goblin || e.Type == EnemyType.Skeleton);

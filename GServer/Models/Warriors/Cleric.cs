@@ -11,10 +11,10 @@ public class Cleric : Warrior, IWarrior
         Type = WarriorType.Cleric;
     }
 
-    public override bool Attack(List<Enemy> enemies, Cave cave, ICemetery cemetery)
+    public override bool Attack(List<IEnemy> enemies, Cave cave, ICemetery cemetery)
     {
         bool hasDefeatedAny = false;
-        List<Enemy> enemiesCopy = new(enemies);
+        List<IEnemy> enemiesCopy = new(enemies);
 
         foreach (var enemy in enemiesCopy)
         {

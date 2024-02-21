@@ -82,14 +82,14 @@ public class CaveProcess : ICaveProcess
             }
         }
     }
-    public void DragonPhase(List<IWarrior> warriors, List<ArtifactBase> artifacts)
+    public bool DragonPhase(List<IWarrior> warriors, List<ArtifactBase> artifacts)
     {
         Dragon dragon = new();
-
-        if (dragon.IsVulnerable(warriors, artifacts))
+        if (_dragonsDen.DragonsCount < 3)
         {
-            _dragonsDen.StartBattle();
+            return false;
         }
+        return dragon.IsVulnerable(warriors, artifacts);
     }
     public void ReGroupPhase()
     {

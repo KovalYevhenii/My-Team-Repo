@@ -8,7 +8,9 @@ namespace GServer.Models.TheDragonsDen
 {
     public interface IDragonsDen
     {
-        void AddDragon(Dragon dragon);
-        void StartBattle();
+        List<IEnemy> DragonsList { get; set; }
+        int DragonsCount { get; }
+        public void AddDragon<T>(T dragon)
+             where T : Dragon, IEnemy;
     }
 }

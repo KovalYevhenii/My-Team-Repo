@@ -11,8 +11,10 @@ namespace GServer.Models.Heroes
         protected int scores;
         public readonly int scoresToLavelUp = 5;
         public Hero ()
+        { 
         //public List<Artifact> Inventory;
         //public List<IWarrior> Crew;
+        }
     }
     public enum HeroType
     {
