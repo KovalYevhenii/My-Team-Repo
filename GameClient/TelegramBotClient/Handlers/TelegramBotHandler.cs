@@ -1,9 +1,9 @@
-﻿using System.Text;
-using Telegram.Bot;
+﻿using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.Enums;
 using TelegramBotClient.Handlers.Interfaces;
+using TelegramBotClient.Interfaces;
 namespace TelegramBotClient.Handlers;
 internal class TelegramBotHandler : ITelegramBotHandler
 {

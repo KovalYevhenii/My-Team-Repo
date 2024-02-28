@@ -1,57 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Json;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
-using Telegram.Bot;
+﻿using Telegram.Bot;
 using Telegram.Bot.Types;
-using Telegram.Bot.Types.Enums;
+using Telegram.Bot.Types.ReplyMarkups;
 using TelegramBotClient.Handlers.Interfaces;
+using TelegramBotClient.Interfaces;
 
-namespace TelegramBotClient.Handlers
+namespace TelegramBotClient.Handlers;
+public class CallBackHandler : ICallbackHandler
 {
-    public class CallBackHandler : ICallbackHandler
+    private readonly ITelegramBotClient _botClient;
+    private readonly IGameKeyboard _keyboardWithCallback;
+    private readonly ICallbackManager _callbackManager;
+    public CallBackHandler(ITelegramBotClient botClient, IGameKeyboard gameKeyboard, ICallbackManager callbackManager)
     {
-        private readonly ITelegramBotClient _botClient;
-        private readonly IGameKeyboard _keyboardWithCallback;
-        private readonly HttpClient _httpClient;
-        public CallBackHandler(ITelegramBotClient botClient, IGameKeyboard gameKeyboard, HttpClient httpClient)
+        _botClient = botClient;
+        _keyboardWithCallback = gameKeyboard;
+        _callbackManager = callbackManager;
+    }
+    private readonly Dictionary<string, bool> _buttonPressedFlag = new();
+    public async Task BotOnCallbackDataReceiving(CallbackQuery callbackQuery, ChatId chatId)
+    {
+        //if (_buttonPressedFlag.ContainsKey(callbackQuery.Data) && _buttonPressedFlag[callbackQuery.Data])
+        //{
+        //    return;
+        //}
+        //if (_callbackManager.TryGetCallback(callbackQuery.Data, out var callback))
+        //{
+        //   callback(_botClient, chatId);
+        //}
+        switch (callbackQuery.Data)
         {
-            _httpClient = httpClient;
-            _botClient = botClient;
-            _keyboardWithCallback = gameKeyboard;
-        }
 
-        public async Task BotOnCallbackDataReceiving(CallbackQuery callbackQuery, ChatId chatId)
-        {
-            switch (callbackQuery.Data)
-            {
-                case "Однопользовательская":
-                    await _keyboardWithCallback.StartingGameKeyboard(_botClient, chatId);
-                    break;
-                case "Многопользовательская":
-                    await _keyboardWithCallback.StartingGameKeyboard(_botClient, chatId);
-                    break;
-                case "Yes":
-                    var responce = await _httpClient.GetAsync($"https://localhost:7048/api/user/Session?chatId={chatId.Identifier}");
-                    if (responce.IsSuccessStatusCode)
-                    {
-                        var json = await responce.Content.ReadAsStringAsync();
-                        var session = JsonSerializer.Deserialize<Dictionary<string, bool>>(json);
-                        foreach (var item in session)
-                        {
-                            Console.WriteLine($"{item.Value} {item.Key}");
-                        }
-                    }
-                    break;
-                case "No":
-                    // handle game start cancellation
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
+            case "Однопользовательская":
+                _buttonPressedFlag[callbackQuery.Data] = true;
+                await _keyboardWithCallback.StartingGameKeyboardAsync(_botClient, chatId);
+                break;
+            case "Многопользовательская":
+                await _keyboardWithCallback.StartingGameKeyboardAsync(_botClient, chatId);
+                break;
+            case "Yes":
+                await _keyboardWithCallback.ChooseHeroButtonsAsync(_botClient, chatId);
+                break;
+            case "взять героя":
+                await _keyboardWithCallback.ThrowDiceButtonsAsync(_botClient, chatId);
+                break;
+            case "Yes1":
+                await _keyboardWithCallback.WarriorsDiceButtonsAsync(_botClient, chatId);
+                var warriors = new[] { "🔮 Mage", "⚔️ Paladin", "🥷 Thief", "🏹 kliric", "🗡️ Guard" };
+                var buttons = warriors.Select(w => new KeyboardButton(w)).ToArray();
+                var keyboard = new ReplyKeyboardMarkup(buttons);
+                await _botClient.SendTextMessageAsync(chatId, "Choose a warrior:", replyMarkup: keyboard);
+                break;
+            case "No1":
+                break;
+            case "No":
+                // handle game start cancellation
+                break;
+            default:
+                throw new NotImplementedException();
         }
     }
 }

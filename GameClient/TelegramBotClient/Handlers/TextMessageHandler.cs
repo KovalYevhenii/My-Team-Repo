@@ -1,7 +1,6 @@
 ﻿using Telegram.Bot.Types;
 using Telegram.Bot;
 using TelegramBotClient.Handlers.Interfaces;
-
 namespace TelegramBotClient.Handlers;
 public class TextMessageHandler : ITextMessageHandler
 {
@@ -17,11 +16,13 @@ public class TextMessageHandler : ITextMessageHandler
         switch (message)
         {
             case "/start":
-                await _startMenuKeyboard.VersionKeyboard(_botClient, chatId);
-
+                var versionKeyboardAction = _startMenuKeyboard.VersionKeyboardAsync();
+                await versionKeyboardAction(_botClient, chatId);
                 break;
             case "Action1":
+              
                 await _botClient.SendTextMessageAsync(chatId, "Режим для одного");
+                
                 break;
             case "/command1":
                 Console.WriteLine("Правила");

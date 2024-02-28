@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using TelegramBotClient.Handlers.Interfaces;
 using TelegramBotClient.Handlers.Services;
+using TelegramBotClient.Interfaces;
 
 namespace TelegramBotClient;
 internal class Program
