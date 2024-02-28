@@ -2,7 +2,7 @@
 namespace TelegramBotClient;
 public class KeyboardButtonFactory
 {
-    public static KeyboardButton CreateButton(string text)
+    public async Task<KeyboardButton> CreateButton(string text)
     {
         return new(text);
     }

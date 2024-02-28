@@ -1,6 +1,6 @@
 ﻿using Telegram.Bot;
 
-namespace TelegramBotClient.Handlers.Interfaces
+namespace TelegramBotClient.Interfaces
 {
     internal interface IHandlePollingErrorAsync
     {

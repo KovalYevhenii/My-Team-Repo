@@ -1,7 +1,7 @@
 ﻿using Telegram.Bot;
 using Telegram.Bot.Types;
 
-namespace TelegramBotClient.Handlers.Interfaces
+namespace TelegramBotClient.Interfaces
 {
     internal interface IHandleUpdateAsync
     {

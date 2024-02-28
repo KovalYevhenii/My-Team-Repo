@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Telegram.Bot;
 using TelegramBotClient.Handlers.Interfaces;
+using TelegramBotClient.Interfaces;
 namespace TelegramBotClient.Handlers.Services;
 public class ServicesConfiguration : IServicesConfiguration
 {
@@ -19,5 +20,7 @@ public class ServicesConfiguration : IServicesConfiguration
         services.TryAddSingleton<IBotRunner, BotRunner>();
         services.TryAddSingleton<IGameKeyboard, GameKeyboard>();
         services.TryAddSingleton<ICallbackHandler, CallBackHandler>();
+        services.TryAddSingleton<ICallbackManager, CallbackManager>();
+        services.TryAddSingleton<ICallBackRegistrator, CallbackRegistrator>();
     }
 }

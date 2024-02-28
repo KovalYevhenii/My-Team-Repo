@@ -2,35 +2,81 @@
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using TelegramBotClient.Handlers.Interfaces;
+
 namespace TelegramBotClient;
-public class GameKeyboard: IGameKeyboard
+public class GameKeyboard : IGameKeyboard
 {
-    public async Task VersionKeyboard(ITelegramBotClient botClient, ChatId chatId)
+    public Func<ITelegramBotClient, ChatId, Task> VersionKeyboardAsync()
     {
-        var keyboard = new InlineKeyboardMarkup(new[]
+        return async (botClient, chatId) =>
         {
-            new [] 
+            var keyboard = new InlineKeyboardMarkup(new[]
+            {
+            new []
             {
                 InlineKeyboardButton.WithCallbackData("Однопользовательская"),
                 InlineKeyboardButton.WithCallbackData("Многопользовательская"),
             }
         });
 
-        await botClient.SendTextMessageAsync(chatId,
-            "Выбор версии", replyMarkup: keyboard);
+            await botClient.SendTextMessageAsync(chatId,
+                "Выбор версии", replyMarkup: keyboard);
+        };
     }
-    public async Task StartingGameKeyboard(ITelegramBotClient botClient, ChatId chatId)
+    public Func<ITelegramBotClient, ChatId, Task> StartingGameKeyboardAsync()
     {
-        var keyboard = new InlineKeyboardMarkup(new[]
+        return async (botClient, chatId) =>
         {
-            new [] 
+            var keyboard = new InlineKeyboardMarkup(new[]
+            {
+            new []
             {
                 InlineKeyboardButton.WithCallbackData("Yes"),
                 InlineKeyboardButton.WithCallbackData("No"),
             }
         });
+            await botClient.SendTextMessageAsync(chatId,
+                "Начать игру?", replyMarkup: keyboard);
+        };
+    }
+    public async Task ChooseHeroButtonsAsync(ITelegramBotClient botClient, ChatId chatId)
+    {
+        var keyboard = new InlineKeyboardMarkup(new[]
+       {
+            new []
+            {
+                InlineKeyboardButton.WithCallbackData("взять героя"),
+                InlineKeyboardButton.WithCallbackData("Попробовать еще раз"),
+            }
+        });
+        await botClient.SendTextMessageAsync(chatId, "Выбрать данного героя?", replyMarkup: keyboard);
+    }
+    public async Task ThrowDiceButtonsAsync(ITelegramBotClient botClient, ChatId chatId)
+    {
+        var keyboard = new InlineKeyboardMarkup(new[]
+         {
+            new []
+            {
+                InlineKeyboardButton.WithCallbackData("Yes1"),
+                InlineKeyboardButton.WithCallbackData("No1"),
+            }
+        });
 
         await botClient.SendTextMessageAsync(chatId,
-            "Начать игру?", replyMarkup: keyboard);
+            "бросить кубики", replyMarkup: keyboard);
+    }
+    public async Task WarriorsDiceButtonsAsync(ITelegramBotClient botClient, ChatId chatId)
+    {
+        var keyboard = new InlineKeyboardMarkup(new[]
+         {
+            new []
+            {
+                InlineKeyboardButton.WithCallbackData("Принять"),
+                InlineKeyboardButton.WithCallbackData("Перебросить"),
+            }
+        });
+
+        await botClient.SendTextMessageAsync(chatId,
+            "Вы получили кубики Воинов", replyMarkup: keyboard);
     }
 }
