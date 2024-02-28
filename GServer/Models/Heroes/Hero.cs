@@ -4,17 +4,14 @@ using GServer.Models.Warriors;
 
 namespace GServer.Models.Heroes
 {
-    public class Hero
+    public abstract class Hero
     {
-        protected HeroType type;
-        protected int level;
-        protected int scores;
+        public HeroType type;
+        public string id  = string.Empty;
+        public int level { get; set; } = 0;
+        public int scores { get; set; } = 0;
+        public List<Warrior> warrior { get; set; } = new List<Warrior>();
         public readonly int scoresToLavelUp = 5;
-        public Hero ()
-        { 
-        //public List<Artifact> Inventory;
-        //public List<IWarrior> Crew;
-        }
     }
     public enum HeroType
     {
@@ -22,7 +19,7 @@ namespace GServer.Models.Heroes
         SOLDEROFFORTUNE,
         KNIGHT,
         BARD,
-        MAG,
+        MAGE,
         NECROMANCER,
         CRUSADER,
         GOBLIN

@@ -1,36 +1,10 @@
-﻿using GServer.Models.Enemies;
-using GServer.Models.Сemetery;
-
-namespace GServer.Models.Warriors
+﻿namespace GServer.Models.Warriors
 {
-    public class Knight : Warrior, IWarrior
+    public class Knight : Warrior
     {
         public Knight()
         {
-            Type = WarriorType.Knight;
-        }
-        public override bool Attack(List<IEnemy> enemies, Cave cave, ICemetery cemetery)
-        {
-            bool hasDefeatedAny = false;
-            List<IEnemy> enemiesCopy = new(enemies);
-            foreach (var enemy in enemiesCopy)
-            {
-                if ((enemy.Type == EnemyType.Skeleton || enemy.Type == EnemyType.Slime) && !hasDefeatedAny)
-                {
-                    cave.Enemies.Remove(enemy);
-                    hasDefeatedAny = true;
-                }
-                else if (enemy.Type == EnemyType.Goblin)
-                {
-                    cave.Enemies.RemoveAll(enemy => enemy.Type == EnemyType.Goblin);
-                    hasDefeatedAny = true;
-                }
-            }
-            if (hasDefeatedAny)
-            {
-                cemetery.AddWarrior(this);
-            }
-            return hasDefeatedAny;
+            type = WarriorType.Knight;
         }
     }
 }

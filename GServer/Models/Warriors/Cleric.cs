@@ -1,39 +1,13 @@
 ﻿
 using GServer.Models.Enemies;
-using GServer.Models.Сemetery;
-using System;
 
-namespace GServer.Models.Warriors;
-public class Cleric : Warrior, IWarrior
+namespace GServer.Models.Warriors
 {
-    public Cleric()
+    public class Cleric : Warrior
     {
-        Type = WarriorType.Cleric;
-    }
-
-    public override bool Attack(List<IEnemy> enemies, Cave cave, ICemetery cemetery)
-    {
-        bool hasDefeatedAny = false;
-        List<IEnemy> enemiesCopy = new(enemies);
-
-        foreach (var enemy in enemiesCopy)
+        public Cleric()
         {
-            if ((enemy.Type == EnemyType.Goblin || enemy.Type == EnemyType.Slime) && !hasDefeatedAny)
-            {
-                cave.Enemies.Remove(enemy);
-                hasDefeatedAny = true;
-            }
-            else if (enemy.Type == EnemyType.Skeleton)
-            {
-                cave.Enemies.RemoveAll(enemy => enemy.Type == EnemyType.Skeleton);
-                hasDefeatedAny = true;
-            }
+            type = WarriorType.Cleric;
         }
-        if (hasDefeatedAny)
-        {
-            cemetery.AddWarrior(this);
-        }
-        return hasDefeatedAny;
     }
 }
-

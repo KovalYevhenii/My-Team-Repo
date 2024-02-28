@@ -8,8 +8,9 @@ public enum EnemyType
     Elixir,
     Dragon
 }
- public class Enemy: IEnemy
+ public abstract class Enemy
 {
+    public string id;
     public EnemyType Type { get; private set; }
     public Enemy(EnemyType TypeEnemies)
     {

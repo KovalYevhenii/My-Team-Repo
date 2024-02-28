@@ -25,7 +25,7 @@ namespace GServer.Controllers
     //            GameHandler.StartGame(session, _response);
     //            Sessions.getUserSession();
 
-    //            Hero() {
+    //            hero() {
     //                id,HashCode,Type
     //            }
 
