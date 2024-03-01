@@ -2,22 +2,31 @@
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using TelegramBotClient.Handlers.Interfaces;
+using TelegramBotClient.Interfaces;
 
 namespace TelegramBotClient;
 public class GameKeyboard : IGameKeyboard
 {
+    private readonly ICallbackManager _callbackManager;
+
+    public GameKeyboard(ICallbackManager callbackManager)
+    {
+        _callbackManager = callbackManager;
+    }
     public Func<ITelegramBotClient, ChatId, Task> VersionKeyboardAsync()
     {
+        string singlePlayerGuid = _callbackManager.RegisterCallback((botClient, chatId) => StartingGameKeyboardAsync()(botClient, chatId));
+
         return async (botClient, chatId) =>
         {
             var keyboard = new InlineKeyboardMarkup(new[]
             {
-            new []
-            {
-                InlineKeyboardButton.WithCallbackData("Однопользовательская"),
-                InlineKeyboardButton.WithCallbackData("Многопользовательская"),
-            }
-        });
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData("Однопользовательская", singlePlayerGuid),
+                    InlineKeyboardButton.WithCallbackData("Многопользовательская"),
+                }
+            });
 
             await botClient.SendTextMessageAsync(chatId,
                 "Выбор версии", replyMarkup: keyboard);
@@ -29,16 +38,18 @@ public class GameKeyboard : IGameKeyboard
         {
             var keyboard = new InlineKeyboardMarkup(new[]
             {
-            new []
-            {
-                InlineKeyboardButton.WithCallbackData("Yes"),
-                InlineKeyboardButton.WithCallbackData("No"),
-            }
-        });
+                new []
+                {
+                    InlineKeyboardButton.WithCallbackData("Yes"),
+                    InlineKeyboardButton.WithCallbackData("No"),
+                }
+            });
+
             await botClient.SendTextMessageAsync(chatId,
                 "Начать игру?", replyMarkup: keyboard);
         };
     }
+
     public async Task ChooseHeroButtonsAsync(ITelegramBotClient botClient, ChatId chatId)
     {
         var keyboard = new InlineKeyboardMarkup(new[]

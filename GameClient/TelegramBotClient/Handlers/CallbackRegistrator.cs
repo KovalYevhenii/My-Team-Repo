@@ -14,7 +14,7 @@ public class CallbackRegistrator: ICallBackRegistrator
     }
     public void RegisterCallbacks()
     {
-        string singlePlayerGuid = _callbackManager.RegisterCallback((botClient, chatId) => _gameKeyboard.VersionKeyboardAsync());
-        string startGameGuid = _callbackManager.RegisterCallback((botClient, chatId) => _gameKeyboard.StartingGameKeyboardAsync());
+       _callbackManager.RegisterCallback((botClient, chatId) => _gameKeyboard.VersionKeyboardAsync());
+       _callbackManager.RegisterCallback((botClient, chatId) => _gameKeyboard.StartingGameKeyboardAsync());
     }
 }

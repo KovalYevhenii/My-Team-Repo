@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5a439c079a6035dd3b4aac7c8d71666d701bb917")]
 [assembly: System.Reflection.AssemblyProductAttribute("GServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
