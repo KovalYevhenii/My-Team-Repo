@@ -20,9 +20,8 @@ public class TextMessageHandler : ITextMessageHandler
                 await versionKeyboardAction(_botClient, chatId);
                 break;
             case "Action1":
-              
                 await _botClient.SendTextMessageAsync(chatId, "Режим для одного");
-                
+          
                 break;
             case "/command1":
                 Console.WriteLine("Правила");

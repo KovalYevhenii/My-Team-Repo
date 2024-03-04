@@ -5,7 +5,6 @@ namespace TelegramBotClient.Handlers;
 public class CallbackManager: ICallbackManager
 {
     private readonly Dictionary<string, Action<ITelegramBotClient, ChatId>> _callbackHandlers = new();
-
     public string RegisterCallback(Action<ITelegramBotClient, ChatId> callback)
     {
         string guid = Guid.NewGuid().ToString();
